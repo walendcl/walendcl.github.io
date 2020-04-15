@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Anfrage</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+</head>
+
+<body>
+
+    <nav>
+        <a href="Frontseite.html">Hauptseite</a> |
+        <a href="Kurse.html">Kursangebot</a> |
+        <a href="Preise.html">Preise</a> |
+        <a href="Anfrage.html">Anfrage Formular</a> |
+        <a href="Person.html">Zur Person</a> |
+        <a href="Impressum.html">Impressum</a>
+    </nav>
+
+    <h1>Anfrageformular für Kurse</h1>
+
+    <form>
+        <label for="Firmenname">Firmenname:</label> 
+        <input type="text" name="Firmenname"><br>
+
+        Anrede: <br>
+        <input type="radio" id="Herr" name="geschlecht" value="Herr">
+        <label for="Herr">Herr</label><br>
+        <input type="radio" id="Frau" name="geschlecht" value="Frau">
+        <label for="Frau"> Frau</label><br>
+        <input type="radio" id="Andere" name="geschlecht" value="Andere">
+        <label for="Andere">Andere</label>
+        <input type="text" name="gewünscht" placeholder="gewünschte Anrede"> <br>
+
+        Name: <br> 
+        <input type="text" name="vorname" placeholder="Vorname" required>
+        <input type="text" name="nachname" placeholder="Nachname" required><br>
+
+        Adresse:<br>
+        <input type="text" name="StraßeNummer" placeholder="Straße und Nummer" required>
+        <input type="text" name="PLZ" placeholder="PLZ" required>
+        <input type="text" name="Ort" placeholder="Ort" required><br>
+
+        <label for="email">E-Mail Adresse:</label>
+        <input type="email" name="email" required><br>
+
+       <label for="Telefon">Telefonnummer:</label>
+       <input type="text" name="Telefon"><br>
+
+        Kurs: <select id="Seminare" name="Seminare">
+            <option value="1">UML</option>
+            <option value="2">Entwurfsmuster</option>
+            <option value="3">UML+</option>
+        </select><br>
+
+        Wollen Sie inhouse Training? <br>
+        <input type="radio" id="ja" name="inhouse" value="ja">
+        <label for="ja">ja</label>
+        Wie viele Personen? 
+        <input type="number" name="PersonenAnzahl" max="20" min="0"><br>
+        <input type="radio" id="nein" name="inhouse" value="nein">
+        <label for="nein">nein</label><br>
+
+        Wunschtermin: <input type="date" name="Wunschtermin" required><br>
+
+        <textarea name="Nachricht" rows="10" cols="40" placeholder="Weitere Fragen"></textarea><br>
+
+        <input type="checkbox" name="Datenspeichern" value="Datenspeichern">
+        <label for="Datenspeichern"> Daten speichern</label><br>
+
+        <input type="submit" title="Absenden">
+    </form>
+</body>
