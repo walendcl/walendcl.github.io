@@ -4,7 +4,8 @@
 
 body{
     font-family: 'Fira Sans', sans-serif;
-    padding-left: 20px;
+    padding-top: 20px;
+    background-color: #e6e6e6;
 }
 
 ul{
@@ -37,8 +38,15 @@ a[href$=".pdf"]::before {
 
 nav {
     font-size: x-large;
+    
 }
 
 .carousel-inner {
     max-width: 566px;
+}
+.carousel {
+    padding-top: 20px;
+}
+h1 {
+    padding: 20px;
 }
