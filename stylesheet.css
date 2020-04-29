@@ -2,7 +2,7 @@
 
 @import url('font-awesome-4.7.0/css/font-awesome.min.css');
 
-body {
+body{
     font-family: 'Fira Sans', sans-serif;
     padding-left: 20px;
 }
@@ -37,4 +37,8 @@ a[href$=".pdf"]::before {
 
 nav {
     font-size: x-large;
+}
+
+.carousel-inner {
+    max-width: 566px;
 }
