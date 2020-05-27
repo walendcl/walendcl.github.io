@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body>
+<body onload="restart()">
 
         <div class="row" style="background-color: rgb(236, 234, 234);">
             <div class="col" style="text-align: center;">
@@ -25,17 +25,46 @@
                 <label for="num">Geben Sie einen Tip ein.</label>
                 <input type="number" max="1000" min="0" class="form-control" id="num">
                 <br>
-                <button type="submit" class="btn btn-primary">Tipp eingeben</button>
+                <button type="submit" class="btn btn-primary" id="tipp" onclick="guess()">Tipp abgeben</button>
                 <button type="button" class="btn btn-primary"> Neues Spiel starten</button>
             </div>
             <div class="col-sm-5">
                 <h2>Ausgaben</h2>
-                <p>Anzahl bisheriger Versuche</p>
-                <p>Tipp ist zu groß/klein.</p>
+                <p id="guessNum">Anzahl bisheriger Versuche</p>
+                <p id="relation">Tipp ist zu groß/klein.</p>
                 <p>Grafische Darstellung des Verlaufs</p>
             </div>
-            <div class="col-sm-1"
+            <div class="col-sm-1"></div>
         </div>
     
+        <script>
+            var zahl;
+            var numGuess = 0;
+
+            function restart(){
+                numGuess = 0;
+                zahl = randomInteger();
+                console.log(zahl);
+                console.log("bims hier");
+            }
+
+            function guess(){
+                console.log(zahl);
+                var guessValue = document.getElementById("tipp").value;
+                numGuess++;
+                document.getElementById("guessNum").innerHTML = "Anzahl bisheriger Versuche: "+ numGuess;
+                if(guessValue < zahl) {
+                    document.getElementById("relation").innerHTML = "Tipp ist zu klein.";
+                } else if (guessValue > zahl){
+                    document.getElementById("relation").innerHTML = "Tipp ist zu groß.";
+                } else {
+                    document.getElementById("relation").innerHTML = "Gewonnen!";
+                }
+            }
+
+            function randomInteger() {
+                return Math.floor(Math.random() * 1001 );
+            }
+        </script>
 </body>
 </html>
