@@ -13,7 +13,7 @@
     <h2>Eingabe</h2>
     <label for="num">Ganze Zahl (zwischen 1 und 100):</label>
     <input type="number" min="0" max="200" id="num">
-    <button onclick="rpf(document.getElementById('num').value)">RobProFink berechnen</button>
+    <button onclick="listCreate(document.getElementById('num').value)">RobProFink berechnen</button>
 
     <h2>Ausgabe</h2>
     <p>Hier werden in einer Liste alle Werte der RobProFink-Funktion von 0 bis zur eingegebenen Zahl (n) ausgegeben.</p>
@@ -24,24 +24,29 @@
 
     <script>
         function listCreate(n){
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("Water");
-            node.appendChild(textnode);
-            document.getElementById("numList").appendChild(node);
+            var list = document.getElementById("numList");
+            listEmpty(list);
 
             for(i = 0; i <= n; i++) {
+                var ele = document.createElement("LI");
+                var text = document.createTextNode("rpf(" + i + ") = " + rpf(i));
+                ele.appendChild(text);
+                list.appendChild(ele);
+            }
+        }
 
+        function listEmpty(list) {
+            while(list.hasChildNodes()) {
+                list.removeChild(list.childNodes[0]);
             }
         }
 
         function rpf(n) {
-            console.log("triggered");
             if (n>100) {
                 return n-10;
             } else {
                 n = rpf(rpf(n+11));
             }
-            console.log("done");
             return n;
         }
         console.log("rpf(104)=" + rpf(104));
