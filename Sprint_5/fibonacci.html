@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sprint 5 fibonacci</title>
+</head>
+
+<body>
+
+    <h1>Fibonacci Zahlen</h1>
+
+    <input type="number" min="0" id="fib_input">
+    <button type="submit" onclick="fibonacci()" id="btn">Abgeben</button>
+    <p id="fib"></p>
+<script>
+    function fibonacci(){
+        var value = document.getElementById("fib_input").value
+        var fib ="0";
+        var prev = 0;
+        var prevv = 1;
+        for (i = 0; i < value; i++) {
+            var cur = prev + prevv;
+            prevv = prev;
+            prev = cur;
+            fib = fib + ";" + cur
+        }
+
+        console.log(fib);
+        document.getElementById("fib").innerHTML = fib;
+    }
+
+</script>
+</body>
+</html>
