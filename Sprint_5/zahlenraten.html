@@ -4,10 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Sprint 5 Zahlenraten</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
 
+        <div class="row" style="background-color: rgb(236, 234, 234);">
+            <div class="col" style="text-align: center;">
+                <h1>Zahlenratespiel</h1>
+                <p>Raten Sie eine Zahl von 0-1000. Sie haben maximal 10 Versuche.</p>
+            </div>
+        </div>
+
+        <br>
+        
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5 form-group">
+                <h2>Eingaben</h2>
+                <label for="num">Geben Sie einen Tip ein.</label>
+                <input type="number" max="1000" min="0" class="form-control" id="num">
+                <br>
+                <button type="submit" class="btn btn-primary">Tipp eingeben</button>
+                <button type="button" class="btn btn-primary"> Neues Spiel starten</button>
+            </div>
+            <div class="col-sm-5">
+                <h2>Ausgaben</h2>
+                <p>Anzahl bisheriger Versuche</p>
+                <p>Tipp ist zu groß/klein.</p>
+                <p>Grafische Darstellung des Verlaufs</p>
+            </div>
+            <div class="col-sm-1"
+        </div>
     
 </body>
 </html>
