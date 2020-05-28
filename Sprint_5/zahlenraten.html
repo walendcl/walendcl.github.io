@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Sprint 5 Zahlenraten</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
 
 <body onload="restart()">
@@ -26,13 +27,13 @@
                 <input type="number" max="1000" min="0" class="form-control" id="num">
                 <br>
                 <button type="submit" class="btn btn-primary" id="tipp" onclick="guess()">Tipp abgeben</button>
-                <button type="button" class="btn btn-primary"> Neues Spiel starten</button>
+                <button type="button" class="btn btn-primary" onclick="restart()"> Neues Spiel starten</button>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-5" style="visibility: hidden;" id="Ausgabe">
                 <h2>Ausgaben</h2>
-                <p id="guessNum">Anzahl bisheriger Versuche</p>
-                <p id="relation">Tipp ist zu groß/klein.</p>
-                <p>Grafische Darstellung des Verlaufs</p>
+                <p id="guessNum"></p>
+                <p id="relation"></p>
+                <canvas id="myChart" width="400" height="200"></canvas>
             </div>
             <div class="col-sm-1"></div>
         </div>
@@ -40,31 +41,93 @@
         <script>
             var zahl;
             var numGuess = 0;
+            var gewonnen = false;
 
             function restart(){
                 numGuess = 0;
                 zahl = randomInteger();
                 console.log(zahl);
-                console.log("bims hier");
+                document.getElementById("tipp").disabled = false;
+                document.getElementById("Ausgabe").style.visibility = "hidden";
+                gewonnen = false;
+                removeData();
             }
 
             function guess(){
+                document.getElementById("Ausgabe").style.visibility = "visible";
                 console.log(zahl);
-                var guessValue = document.getElementById("tipp").value;
+                var guessValue = document.getElementById("num").value;
+                
                 numGuess++;
                 document.getElementById("guessNum").innerHTML = "Anzahl bisheriger Versuche: "+ numGuess;
+                addTipp(guessValue);
+                
+
                 if(guessValue < zahl) {
                     document.getElementById("relation").innerHTML = "Tipp ist zu klein.";
                 } else if (guessValue > zahl){
                     document.getElementById("relation").innerHTML = "Tipp ist zu groß.";
                 } else {
-                    document.getElementById("relation").innerHTML = "Gewonnen!";
+                    gewonnen = true;
+                    document.getElementById("relation").innerHTML = "Richtig geraten!";
+                    stopGame();
                 }
+
+                if (numGuess == 10 && !gewonnen) {
+                    stopGame();
+                    document.getElementById("relation").innerHTML = "Verloren";
+                }
+            }
+
+            function stopGame(){
+                document.getElementById("tipp").disabled = true;
             }
 
             function randomInteger() {
                 return Math.floor(Math.random() * 1001 );
             }
+
+            var xAxis = [...Array(10).keys()].map(i=>i+1);
+            var data = [];
+
+            function addTipp(tipp) {
+                data.push(tipp);
+                chart.update();
+                console.log(data);
+            }
+
+            function removeData() {
+                data = [];
+                chart.data.datasets[0].data = data;
+                chart.update();
+            }
+
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xAxis,
+                    datasets: [{
+                        label: 'Tipps',
+                        backgroundColor:'rgb(255,99,132)',
+                        borderColor: 'rgb(255,99,132)',
+                        type: 'scatter',
+                        data: data,
+                        showLine: false,
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Grafische Darstellung des Verlaufs',
+                        fontSize: 20,
+                        yAxes: {
+                            min: 0,
+                            max: 1000
+                        }
+                    }
+                }
+            })
         </script>
 </body>
 </html>
