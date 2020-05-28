@@ -121,11 +121,13 @@
                         display: true,
                         text: 'Grafische Darstellung des Verlaufs',
                         fontSize: 20,
-                        yAxes: {
-                            min: 0,
-                            max: 1000
-                        }
                     }
+                }
+            })
+            Chart.scaleService.updateScaleDefaults('linear', {
+                ticks: {
+                    min: 0,
+                    max: 1000
                 }
             })
         </script>
