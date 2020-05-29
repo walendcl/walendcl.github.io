@@ -46,7 +46,6 @@
             function restart(){
                 numGuess = 0;
                 zahl = randomInteger();
-                console.log(zahl);
                 document.getElementById("tipp").disabled = false;
                 document.getElementById("Ausgabe").style.visibility = "hidden";
                 gewonnen = false;
@@ -55,7 +54,6 @@
 
             function guess(){
                 document.getElementById("Ausgabe").style.visibility = "visible";
-                console.log(zahl);
                 var guessValue = document.getElementById("num").value;
                 
                 numGuess++;
@@ -93,7 +91,6 @@
             function addTipp(tipp) {
                 data.push(tipp);
                 chart.update();
-                console.log(data);
             }
 
             function removeData() {
